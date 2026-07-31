@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#6d4c2f"/><circle cx="256" cy="205" r="128" fill="#efe6d5"/><text x="256" y="260" font-size="180" text-anchor="middle">🎓</text><text x="256" y="425" font-family="Arial" font-weight="700" font-size="54" fill="white" text-anchor="middle">RHYDER</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="96" fill="#6d4c2f"/>
+<circle cx="256" cy="210" r="128" fill="#efe6d5"/>
+<text x="256" y="265" font-size="180" text-anchor="middle">🎓</text>
+<text x="256" y="430" font-family="Arial" font-weight="700" font-size="54" fill="white" text-anchor="middle">RHYDER</text>
+</svg>
