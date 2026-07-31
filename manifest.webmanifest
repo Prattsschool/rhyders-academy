@@ -1,8 +1,7 @@
 {
   "name": "Rhyder's Academy",
   "short_name": "Rhyder Academy",
-  "start_url": "./index.html?v=master-1",
-  "scope": "./",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#efe6d5",
   "theme_color": "#6d4c2f",

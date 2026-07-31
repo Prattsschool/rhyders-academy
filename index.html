@@ -7,499 +7,418 @@
 <link rel="manifest" href="manifest.webmanifest">
 <title>Rhyder's Academy</title>
 <style>
-:root{--ink:#2d2a26;--tan:#efe6d5;--brown:#6d4c2f;--gold:#c89b4b;--green:#557a55;--paper:#fffdf8;--blue:#416a86}
+:root{--brown:#6d4c2f;--dark:#3f2d21;--tan:#efe6d5;--paper:#fffdf8;--gold:#c89b4b;--green:#557a55;--blue:#416a86;--ink:#2d2a26}
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--tan);color:var(--ink)}
-header{background:linear-gradient(135deg,#4a3526,#7a5635);color:white;padding:20px 18px}
+header{background:linear-gradient(135deg,var(--dark),var(--brown));color:white;padding:18px}
 header h1{margin:0;font-size:1.8rem} header p{margin:5px 0 0}
-nav{display:flex;gap:8px;overflow:auto;padding:10px;background:#fff;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:3}
-button,.btn{border:0;border-radius:9px;padding:11px 14px;background:var(--brown);color:#fff;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+nav{display:flex;gap:8px;overflow:auto;padding:10px;background:#fff;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:5}
+button,.btn{border:0;border-radius:10px;padding:11px 14px;background:var(--brown);color:#fff;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
 button.secondary,.btn.secondary{background:var(--blue)}
 button.light,.btn.light{background:#ececec;color:#333}
-main{max-width:980px;margin:auto;padding:18px}
+main{max-width:1050px;margin:auto;padding:16px}
 .page{display:none}.page.active{display:block}
-.card{background:var(--paper);border-radius:13px;padding:17px;margin:14px 0;box-shadow:0 2px 8px #00000014}
-.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:14px}
+.card{background:var(--paper);border-radius:14px;padding:17px;margin:14px 0;box-shadow:0 2px 9px #00000014}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}
 .weather{background:#f4f8fb}
-.day{border-left:6px solid var(--gold)}
-.task{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #eee}
-.task:last-child{border-bottom:0}.task input{width:21px;height:21px;margin-top:2px}
-.progress{height:18px;background:#ddd;border-radius:20px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:var(--green)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
-.subject{padding:18px;border-radius:12px;background:#fff;cursor:pointer;border:2px solid transparent}.subject:hover{border-color:var(--gold)}
-textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font:inherit}
-.small{font-size:.9rem;color:#666}.notice{background:#fff3cd;border:1px solid #e2c56d;padding:12px;border-radius:8px}
-.print-sheet{background:white;border:1px solid #bbb;padding:28px;min-height:650px;margin:15px 0}
-.lines{background:repeating-linear-gradient(white,white 27px,#b9c4cc 28px);height:190px;margin-top:10px}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}.badge{display:inline-block;background:#e8efe8;color:#365936;border-radius:20px;padding:5px 10px;font-weight:bold}
-.start{font-size:1.08rem;padding:15px 20px}
-@media(max-width:700px){.hero,.two-col{grid-template-columns:1fr}}
-@media print{
- header,nav,.no-print,.btn,button{display:none!important}
- body{background:white} main{max-width:none;padding:0}
- .page{display:none!important}.page.printing{display:block!important}
- .card{box-shadow:none}.print-sheet{page-break-after:always;border:0;min-height:auto}
-}
+.progress{height:18px;background:#ddd;border-radius:20px;overflow:hidden}
+.progress span{display:block;height:100%;width:0;background:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px}
+.tile{background:white;border:2px solid transparent;border-radius:13px;padding:18px;cursor:pointer}
+.tile:hover{border-color:var(--gold)}
+.task{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #eee;overflow:hidden}
+.task:last-child{border-bottom:0}.task input{width:21px;height:21px;margin-top:2px;flex:0 0 auto}.task span{display:block;min-width:0;flex:1}.task .btn{display:block;width:max-content;max-width:100%;margin-top:8px;white-space:normal}
+textarea,input[type=text],select{width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font:inherit}
+.small{font-size:.9rem;color:#666}.notice{background:#fff3cd;border:1px solid #e2c56d;padding:12px;border-radius:9px}
+.week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:8px}
+.week-btn{background:#876546;padding:10px 7px}
+.week-btn.current{background:var(--green)}
+.week-content{border-left:6px solid var(--gold)}
+.day-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.day-tabs button{background:#8b6a4a}
+.day-tabs button.active-day{background:var(--green)}
+.day-panel{display:none}.day-panel.active-day-panel{display:block}
+.subject-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.badge{display:inline-block;background:#e8efe8;color:#365936;border-radius:20px;padding:5px 10px;font-weight:bold}
+.start{font-size:1.08rem;padding:15px 21px}
+.print-sheet{background:#fff;border:1px solid #bbb;padding:28px;min-height:650px;margin:15px 0}
+.lines{background:repeating-linear-gradient(#fff,#fff 27px,#b9c4cc 28px);height:190px}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.day-tabs{grid-template-columns:1fr 1fr}}
+@media print{header,nav,.no-print,button,.btn{display:none!important}body{background:#fff}main{max-width:none;padding:0}.page{display:none!important}.page.printing{display:block!important}.card{box-shadow:none}.print-sheet{page-break-after:always;border:0}}
 </style>
 </head>
 <body>
 <header>
-  <h1>🎓 Rhyder's Academy</h1>
-  <p>Pratt Homeschool • 6th Grade <span style="opacity:.75">• Master v1.0</span></p>
+<h1>🎓 Rhyder's Academy</h1>
+<p>Pratt Homeschool • 4-Day School Week</p>
 </header>
 
 <nav>
-  <button onclick="showPage('home')">Home</button>
-  <button onclick="showPage('today')">Today</button>
-  <button onclick="showPage('history')">History</button>
-  <button onclick="showPage('math')">Math</button>
-  <button onclick="showPage('science')">Science</button>
-  <button onclick="showPage('reading')">Reading</button>
-  <button onclick="showPage('writing')">Writing</button>
-  <button onclick="showPage('research')">Research</button>
-  <button onclick="showPage('progress')">Progress</button>
-  <button onclick="showPage('print')">Print</button>
-  <button class="secondary" onclick="showPage('coach')">💬 Ask Coach</button>
-  <button onclick="openParent()">🔒 Parent</button>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('today')">Today</button>
+<button onclick="showPage('history')">History</button>
+<button onclick="showPage('math')">Math</button>
+<button onclick="showPage('science')">Science</button>
+<button onclick="showPage('language')">Language Arts</button>
+<button onclick="showPage('research')">Research</button>
+<button onclick="showPage('print')">Print</button>
+<button class="secondary" onclick="showPage('coach')">💬 Ask Coach</button>
+<button id="parentNavButton" onclick="showParentLock()">🔒 Parent</button>
 </nav>
 
 <main>
 <section id="home" class="page active">
-  <div class="hero">
-    <div class="card">
-      <h2 id="greeting">Good Morning, Rhyder!</h2>
-      <p><strong id="dateLine"></strong><br><span id="timeLine"></span></p>
-      <div class="progress"><span id="bar"></span></div>
-      <p><strong id="progressText">0% complete</strong></p>
-      <button class="start" onclick="showPage('today')">▶ Start School</button>
-    </div>
-    <div class="card weather">
-      <h3>🌤️ Weather</h3>
-      <p id="weatherText">Loading weather…</p>
-      <button class="secondary" onclick="loadWeather(true)">Refresh Weather</button>
-    </div>
-  </div>
-
+<div class="hero">
   <div class="card">
-    <h3>Mom's Note</h3>
-    <p id="momNoteDisplay">Have a great school day!</p>
+    <h2 id="greeting">Good Morning, Rhyder!</h2>
+    <p><strong id="dateLine"></strong><br><span id="timeLine"></span></p>
+    <div class="progress"><span id="bar"></span></div>
+    <p><strong id="progressText">0% complete</strong></p>
+    <button class="start" onclick="showPage('today')">▶ Start Today's School</button>
   </div>
-
-  <div class="grid">
-    <div class="subject" onclick="showPage('today')"><h3>✅ Today's Lessons</h3><p>Work through the day in order.</p></div>
-    <div class="subject" onclick="showPage('history')"><h3>📖 History</h3><p>Mystery of History, videos, timeline and writing.</p></div>
-    <div class="subject" onclick="showPage('math')"><h3>➗ Math</h3><p>Abeka and Synthesis Tutor.</p></div>
-    <div class="subject" onclick="showPage('science')"><h3>🧪 Science</h3><p>Lessons, videos and experiments.</p></div>
-    <div class="subject" onclick="showPage('reading')"><h3>📚 Reading</h3><p>Daily reading and responses.</p></div>
-    <div class="subject" onclick="showPage('writing')"><h3>✍️ Writing</h3><p>Paragraphs connected to lessons.</p></div>
-    <div class="subject" onclick="showPage('research')"><h3>🕵️ Research</h3><p>History Detective case file.</p></div>
-    
-    <div class="subject" onclick="showPage('coach')"><h3>💬 Ask Coach</h3><p>Get a hint or explanation without being given the answer.</p></div>
-    <div class="subject" onclick="showPage('print')"><h3>🖨️ Print Center</h3><p>Week 1 printable pages.</p></div>
+  <div class="card weather">
+    <h3>🌤️ Weather</h3>
+    <p id="weatherText">Loading weather…</p>
+    <button class="secondary" onclick="loadWeather()">Refresh</button>
   </div>
+</div>
 
+<div class="card"><h3>Mom's Note</h3><p id="momNoteDisplay">Have a great school day!</p></div>
 
+<div class="grid">
+  <div class="tile" onclick="showPage('today')"><h3>📅 Today</h3><p>See the complete school-day checklist.</p></div>
+  <div class="tile" onclick="showPage('history')"><h3>📖 History</h3><p>Mystery of History • Weeks 1–36</p></div>
+  <div class="tile" onclick="showPage('math')"><h3>➗ Math</h3><p>Abeka 5 + Synthesis Tutor</p></div>
+  <div class="tile" onclick="showPage('science')"><h3>🧪 Science</h3><p>Hands-on science • Weeks 1–36</p></div>
+  <div class="tile" onclick="showPage('language')"><h3>📚 Language Arts</h3><p>Reading, grammar, spelling and writing</p></div>
+  <div class="tile" onclick="showPage('coach')"><h3>💬 Ask Coach</h3><p>Get hints and explanations.</p></div>
+  <div class="tile" onclick="showParentLock()"><h3>🔒 Parent</h3><p>Open the parent dashboard.</p></div>
+</div>
 </section>
 
 <section id="today" class="page">
-  <div class="card day"><h2>Week 1 Daily Lessons</h2><p class="small">Use the correct day. Checkboxes save on this device.</p></div>
-
-  <div id="monday" class="card day"><h3>Monday • Creation</h3>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read <em>Mystery of History</em>, Lesson 1.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Watch <a href="https://bibleproject.com/videos/genesis-1/" target="_blank">Genesis 1</a> as part of history.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Print and complete the Creation Timeline.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Write one paragraph: Why is Creation important?</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's math lesson.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
+<div class="card">
+  <h2>📅 Today's School</h2>
+  <p>Choose the day. Completed work stays visible and checked.</p>
+  <div class="day-tabs">
+    <button onclick="openTodayDay('today-mon',this)">Monday</button>
+    <button onclick="openTodayDay('today-tue',this)">Tuesday</button>
+    <button onclick="openTodayDay('today-wed',this)">Wednesday</button>
+    <button onclick="openTodayDay('today-thu',this)">Thursday</button>
   </div>
-
-  <div id="tuesday" class="card day"><h3>Tuesday • Adam and Eve</h3>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read the assigned Mystery of History section.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Watch <a href="https://bibleproject.com/videos/genesis-1-11/" target="_blank">Genesis 1–11 Overview</a>.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Answer: What responsibility did people receive?</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's math lesson.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
-  </div>
-
-  <div id="wednesday" class="card day"><h3>Wednesday • Cain, Abel and Early Generations</h3>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read the assigned Mystery of History section.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Review Week 1 vocabulary.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Write one paragraph about a lesson learned from the story.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's math lesson.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
-  </div>
-
-  <div id="thursday" class="card day"><h3>Thursday • Noah and the Flood</h3>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read the assigned Mystery of History section.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Explore <a href="https://isgenesishistory.com/free-videos-is-genesis-history/" target="_blank">free Is Genesis History? videos</a>.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Begin the History Detective Case File.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's math lesson.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
-  </div>
-
-  <div id="friday" class="card day"><h3>Friday • Catch Up and Review</h3>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Finish any incomplete work.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete the History Detective conclusion.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Show Mom your printed and written work.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete any remaining math or reading.</span></label>
-  </div>
+</div>
+<div id="today-mon" class="card day-panel active-day-panel"></div>
+<div id="today-tue" class="card day-panel"></div>
+<div id="today-wed" class="card day-panel"></div>
+<div id="today-thu" class="card day-panel"></div>
 </section>
 
-<section id="history" class="page">
-  <div class="card"><h2>History • Week 1</h2>
-    <p><strong>Main curriculum:</strong> <em>Mystery of History</em>. Bible history is included here, not as a separate subject.</p>
-  </div>
-  <div class="card"><h3>Free Videos</h3>
-    <p><a class="btn" href="https://bibleproject.com/videos/genesis-1/" target="_blank">Genesis 1</a>
-    <a class="btn secondary" href="https://bibleproject.com/videos/genesis-1-11/" target="_blank">Genesis 1–11</a>
-    <a class="btn" href="https://isgenesishistory.com/free-videos-is-genesis-history/" target="_blank">Free Genesis Videos</a></p>
-  </div>
-  <div class="card"><h3>Vocabulary</h3><p>Creation • image of God • generation • covenant • ark • flood • ancient • source • evidence • conclusion</p></div>
-  <div class="card"><h3>History Writing</h3>
-    <textarea class="saveanswer" data-key="history-writing" rows="8" placeholder="Write 1–2 paragraphs here."></textarea>
-  </div>
-</section>
-
-
-<section id="math" class="page">
-  <div class="card">
-    <h2>➗ Math</h2>
-    <p><strong>Main curriculum:</strong> Abeka 5th Grade Math</p>
-  </div>
-
-  <div class="card">
-    <h3>Today's Math</h3>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's assigned Abeka lesson.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete the assigned workbook problems.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Use Synthesis Tutor for practice or extra help.</span></label>
-    <p><a class="btn secondary" href="https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b" target="_blank">Open Synthesis Tutor</a></p>
-  </div>
-
-  <div class="card">
-    <h3>Mom's Math Assignment</h3>
-    <input class="saveanswer" data-key="math-assignment" type="text" placeholder="Example: Abeka Lesson 1, pages 1–2">
-  </div>
-</section>
-
-<section id="science" class="page">
-  <div class="card">
-    <h2>🧪 Science</h2>
-    <p>Science lessons and links will be loaded here.</p>
-  </div>
-
-  <div class="card">
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's science lesson.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Watch the assigned science video.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete the activity or experiment when assigned.</span></label>
-    <input class="saveanswer" data-key="science-link" type="text" placeholder="Mom can paste the science program or video link here">
-    <p><button class="btn" onclick="openSavedLink('science-link')">Open Science</button></p>
-  </div>
-</section>
-
-<section id="reading" class="page">
-  <div class="card">
-    <h2>📚 Reading</h2>
-  </div>
-
-  <div class="card">
-    <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's reading response when assigned.</span></label>
-    <textarea class="saveanswer" data-key="reading-response" rows="6" placeholder="Write 2–3 sentences about what you read."></textarea>
-  </div>
-</section>
-
-<section id="writing" class="page">
-  <div class="card">
-    <h2>✍️ Writing</h2>
-    <p>Writing assignments will connect to history, science, and reading.</p>
-  </div>
-
-  <div class="card">
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's assigned paragraph or writing activity.</span></label>
-    <textarea class="saveanswer" data-key="writing-response" rows="9" placeholder="Write today's assignment here."></textarea>
-  </div>
-
-  <div class="card">
-    <p class="small">Cursive will be added later.</p>
-  </div>
-</section>
-
+<section id="history" class="page"></section>
+<section id="math" class="page"></section>
+<section id="science" class="page"></section>
+<section id="language" class="page"></section>
 
 <section id="research" class="page">
-  <div class="card"><h2>🕵️ History Detective Case File #1</h2><h3>How do sources help us study Noah and the Flood?</h3></div>
-  <div class="card">
-    <label>Source 1 title or link</label><input class="saveanswer" data-key="source1" type="text">
-    <label>What did this source say?</label><textarea class="saveanswer" data-key="source1notes" rows="4"></textarea>
-    <label>Source 2 title or link</label><input class="saveanswer" data-key="source2" type="text">
-    <label>What did this source say?</label><textarea class="saveanswer" data-key="source2notes" rows="4"></textarea>
-    <label>Where did the sources agree?</label><textarea class="saveanswer" data-key="agree" rows="3"></textarea>
-    <label>Where were they different?</label><textarea class="saveanswer" data-key="different" rows="3"></textarea>
-    <label>Your conclusion — 5–8 sentences.</label><textarea class="saveanswer" data-key="conclusion" rows="8"></textarea>
-  </div>
-</section>
-
-
-<section id="progress" class="page">
-  <div class="card">
-    <h2>📊 Progress</h2>
-    <p>Rhyder's completed checkboxes are saved on this device.</p>
-    <div class="progress"><span id="progressPageBar"></span></div>
-    <p><strong id="progressPageText">0% complete</strong></p>
-  </div>
-
-  <div class="card">
-    <h3>Week 1 Goal</h3>
-    <p>Complete the assigned History, Math, Science, Reading, and Writing work for the four-day school week.</p>
-  </div>
+<div class="card"><h2>🔍 Research</h2><p>History Detective, science research and optional projects will be organized here.</p></div>
+<div class="card">
+  <label><strong>Research question</strong></label>
+  <textarea class="saveanswer" data-key="research-question" rows="4"></textarea>
+  <label><strong>Sources and notes</strong></label>
+  <textarea class="saveanswer" data-key="research-notes" rows="8"></textarea>
+  <label><strong>Conclusion</strong></label>
+  <textarea class="saveanswer" data-key="research-conclusion" rows="8"></textarea>
+</div>
 </section>
 
 <section id="print" class="page">
-  <div class="card no-print"><h2>Print Center</h2><button onclick="printCenter()">Print All Week 1 Sheets</button></div>
-  <div class="print-sheet"><h1>Rhyder's Academy</h1><h2>Week 1 Creation Timeline</h2>
-    <p>Name: __________________ Date: __________</p><p>Draw or write what happened on each day of Creation.</p>
-    <div class="two-col"><div><h3>Day 1</h3><div class="lines"></div><h3>Day 2</h3><div class="lines"></div><h3>Day 3</h3><div class="lines"></div></div>
-    <div><h3>Day 4</h3><div class="lines"></div><h3>Day 5</h3><div class="lines"></div><h3>Day 6 and Day 7</h3><div class="lines"></div></div></div>
-  </div>
-  <div class="print-sheet"><h1>Rhyder's Academy</h1><h2>Week 1 Vocabulary</h2>
-    <p>Name: __________________ Date: __________</p><p>Write each definition in your own words.</p>
-    <p><strong>Creation:</strong></p><div class="lines"></div><p><strong>Covenant:</strong></p><div class="lines"></div>
-    <p><strong>Ancient:</strong></p><div class="lines"></div><p><strong>Evidence:</strong></p><div class="lines"></div>
-  </div>
-  <div class="print-sheet"><h1>Rhyder's Academy</h1><h2>History Detective Notes</h2>
-    <p>Name: __________________ Date: __________</p><p><strong>Question:</strong></p><div class="lines"></div>
-    <p><strong>Source 1:</strong></p><div class="lines"></div><p><strong>Source 2:</strong></p><div class="lines"></div>
-    <p><strong>Conclusion:</strong></p><div class="lines" style="height:260px"></div>
-  </div>
+<div class="card no-print"><h2>🖨️ Print Center</h2><p>Printables will be listed by subject and week as curriculum is added.</p><button onclick="printCenter()">Print Current Sample</button></div>
+<div class="print-sheet"><h1>Rhyder's Academy</h1><h2>Weekly Notes</h2><p>Name: ____________________ Week: ________</p><div class="lines" style="height:500px"></div></div>
+</section>
+
+<section id="coach" class="page">
+<div class="card"><h2>💬 Ask Coach</h2><p>Coach explains, gives hints and asks questions. Coach should not complete the assignment.</p></div>
+<div class="card">
+  <label><strong>Subject</strong></label>
+  <select id="coach-subject"><option>History</option><option>Math</option><option>Science</option><option>Language Arts</option><option>Research</option></select>
+  <label><strong>What are you stuck on?</strong></label>
+  <textarea id="coach-question" rows="7" placeholder="Type your question here."></textarea>
+  <p><button class="secondary" onclick="askCoach()">Copy Question & Open ChatGPT</button> <button class="light" onclick="clearCoach()">Clear</button></p>
+  <div id="coach-status" class="notice" style="display:none"></div>
+</div>
 </section>
 
 
-<section id="coach" class="page">
+<section id="parent-lock" class="page">
   <div class="card">
-    <h2>💬 Ask Coach</h2>
-    <p>Use this when you are stuck. Coach should explain, give hints, and ask questions—not do the assignment for you.</p>
-  </div>
+    <h2>🔒 Parent Access</h2>
+    <p id="parentLockMessage">Enter your Parent PIN.</p>
 
-  <div class="card">
-    <label for="coach-subject"><strong>Subject</strong></label>
-    <select id="coach-subject" style="width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font:inherit;margin:8px 0 14px;">
-      <option>History</option>
-      <option>Math</option>
-      <option>Science</option>
-      <option>Reading</option>
-      <option>Writing</option>
-      <option>Research</option>
-    </select>
-
-    <label for="coach-question"><strong>What are you stuck on?</strong></label>
-    <textarea id="coach-question" rows="7" placeholder="Example: I do not understand what covenant means in this lesson."></textarea>
+    <label for="parentPinInput"><strong>Parent PIN</strong></label>
+    <input id="parentPinInput" type="password" inputmode="numeric" maxlength="6"
+           placeholder="4–6 digit PIN" autocomplete="off">
 
     <p>
-      <button class="secondary" onclick="askCoach()">Copy Question & Open ChatGPT</button>
-      <button class="light" onclick="clearCoach()">Clear</button>
+      <button class="secondary" onclick="submitParentPin()">Continue</button>
+      <button class="light" onclick="showPage('home')">Cancel</button>
     </p>
 
-    <div id="coach-status" class="notice" style="display:none;"></div>
-  </div>
-
-  <div class="card">
-    <h3>Coach Rules</h3>
-    <p class="small">
-      Explain at a sixth-grade level. Do not write the assignment or give a final answer.
-      Give one hint at a time, ask Rhyder what he has tried, and help him think through the problem.
+    <p class="small" id="parentSetupHelp">
+      The first time you use Parent, enter the 4–6 digit PIN you want and tap Continue.
     </p>
   </div>
 </section>
 
 <section id="parent" class="page">
-  <div class="card"><h2>Parent</h2><p><span class="badge">Master Version 1.0</span></p><p>These settings save only on this device.</p></div>
-  <div class="card notice"><strong>What is Pratt Homeschool Drive?</strong><br>It is your private filing cabinet for worksheets, submitted work, photos, and school records. Rhyder does not need to open it during his normal school day.</div>
-  <div class="card"><h3>Mom's Note</h3>
-    <textarea id="momNoteInput" rows="4" placeholder="Example: Finish history before lunch."></textarea>
-    <p><button onclick="saveMomNote()">Save Note</button></p>
-  </div>
-  <div class="card"><h3>Quick Links</h3>
-    <p><a class="btn secondary" href="https://drive.google.com/drive/folders/1P0YHmUGEadS95J3PVRqxYUepwUcIg7Hu?usp=sharing" target="_blank">📁 Open Parent Google Drive</a></p>
-    <p class="small">Use this only when you need to manage files. Paste the math, science and Google Form links on the Subjects page once they are ready.</p>
-  </div>
-  <div class="card">
-    <h3>Parent PIN</h3>
-    <p class="small">The PIN is saved only on this device. It keeps Rhyder from accidentally changing parent settings.</p>
-    <button class="secondary" onclick="changeParentPin()">Change Parent PIN</button>
-  </div>
-  <div class="card"><button class="light" onclick="resetChecks()">Reset All Checkboxes</button></div>
+<div class="card"><h2>🔒 Parent Dashboard</h2></div>
+<div class="card">
+<h3>Curriculum Overview</h3>
+<p><strong>History:</strong> Mystery of History</p>
+<p><strong>Math:</strong> Abeka 5, starting with Lesson 16, plus Synthesis Tutor</p>
+<p><strong>Science:</strong> Custom hands-on course aligned to Tennessee sixth-grade standards</p>
+<p><strong>Language Arts:</strong> The Golden Goblet with Learning Ally, Daily Grams, spelling and writing</p>
+</div>
+<div class="card">
+<h3>Mom's Note</h3>
+<textarea id="momNoteInput" rows="4"></textarea>
+<p><button onclick="saveMomNote()">Save Note</button></p>
+</div>
+<div class="card">
+<h3>Resource Links</h3>
+<p><a class="btn secondary" href="https://drive.google.com/drive/folders/1P0YHmUGEadS95J3PVRqxYUepwUcIg7Hu?usp=sharing" target="_blank">Open Pratt Homeschool Drive</a></p>
+<p><a class="btn" href="https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b" target="_blank">Open Synthesis Tutor</a></p>
+<p><a class="btn" href="https://learningally.org/abs-more-info" target="_blank">Open Learning Ally</a></p>
+</div>
+<div class="card">
+<h3>Parent PIN</h3>
+<button class="secondary" onclick="changeParentPin()">Change Parent PIN</button>
+</div>
+<div class="card"><button class="light" onclick="resetChecks()">Reset All Checkboxes</button></div>
 </section>
 </main>
 
 <script>
+const curricula={
+ history:{title:'📖 History',subtitle:'Mystery of History',week1:'Creation and the Beginning'},
+ math:{title:'➗ Math',subtitle:'Abeka 5 + Synthesis Tutor',week1:'Lessons 16–19'},
+ science:{title:'🧪 Science',subtitle:'Hands-on Tennessee Standards Course',week1:'Coming Soon'},
+ language:{title:'📚 Language Arts',subtitle:'Reading • Grammar • Spelling • Writing',week1:'The Golden Goblet'}
+};
 
-let parentUnlocked = false;
+const week1={
+ history:{
+  mon:['Read Mystery of History Lesson 1.','Watch today’s one-click history video.','Complete the assigned history activity.'],
+  tue:['Read the next assigned Mystery of History lesson.','Watch today’s one-click history video.','Complete the assigned history activity.'],
+  wed:['Read the next assigned Mystery of History lesson.','Complete vocabulary or timeline work.','Complete the assigned history writing.'],
+  thu:['Finish Week 1 history work.','Complete the research or review activity.','Show completed work to Mom.']
+ },
+ math:{
+  mon:['Complete Abeka Lesson 16.','Complete the assigned workbook work.','Open Synthesis Tutor.'],
+  tue:['Complete Abeka Lesson 17.','Complete the assigned workbook work.','Open Synthesis Tutor.'],
+  wed:['Complete Abeka Lesson 18.','Complete the assigned workbook work.','Open Synthesis Tutor.'],
+  thu:['Complete Abeka Lesson 19.','Complete the assigned workbook work.','Open Synthesis Tutor.']
+ },
+ science:{
+  mon:['Science Week 1 curriculum will be added later.'],
+  tue:['Science Week 1 curriculum will be added later.'],
+  wed:['Science Week 1 curriculum will be added later.'],
+  thu:['Science Week 1 curriculum will be added later.']
+ },
+ language:{
+  mon:['Read or listen to The Golden Goblet assignment.','Complete Daily Grams.','Practice spelling.','Complete today’s writing assignment.'],
+  tue:['Read or listen to The Golden Goblet assignment.','Complete Daily Grams.','Practice spelling.','Complete today’s writing assignment.'],
+  wed:['Read or listen to The Golden Goblet assignment.','Complete Daily Grams.','Practice spelling.','Complete today’s writing assignment.'],
+  thu:['Read or listen to The Golden Goblet assignment.','Complete Daily Grams.','Take the spelling test.','Complete today’s writing assignment.']
+ }
+};
 
-function openParent(){
-  const savedPin = localStorage.getItem('parent-pin');
+function taskHTML(text,key,extra=''){
+ return `<label class="task"><input class="savecheck" data-key="${key}" type="checkbox"><span>${text}${extra}</span></label>`;
+}
 
-  if(!savedPin){
-    const first = prompt('Create a 4–6 digit Parent PIN:');
-    if(first === null) return;
+function renderSubject(subject){
+ const c=curricula[subject];
+ const weeks=Array.from({length:36},(_,i)=>`<button class="week-btn ${i===0?'current':''}" onclick="selectWeek('${subject}',${i+1},this)">Week ${i+1}</button>`).join('');
+ document.getElementById(subject).innerHTML=`
+ <div class="card"><div class="subject-head"><div><h2>${c.title}</h2><p>${c.subtitle}</p></div></div><div class="week-grid">${weeks}</div></div>
+ <div id="${subject}-week-content" class="card week-content"></div>`;
+ renderWeek(subject,1);
+}
 
-    if(!/^\d{4,6}$/.test(first)){
-      alert('Please use 4–6 numbers.');
-      return;
-    }
+function renderWeek(subject,week){
+ const c=curricula[subject];
+ const box=document.getElementById(`${subject}-week-content`);
+ if(week!==1){
+   box.innerHTML=`<span class="badge">Week ${week}</span><h2>Coming Soon</h2><p>This week is ready for curriculum to be loaded.</p>`;
+   return;
+ }
+ const names={mon:'Monday',tue:'Tuesday',wed:'Wednesday',thu:'Thursday'};
+ const buttons=Object.keys(names).map((d,i)=>`<button class="${i===0?'active-day':''}" onclick="openSubjectDay('${subject}','${d}',this)">${names[d]}</button>`).join('');
+ const panels=Object.keys(names).map((d,i)=>{
+   const tasks=week1[subject][d].map((t,j)=>{
+     let extra='';
+     if(subject==='math' && t.includes('Synthesis')) extra=' <br><a class="btn secondary" href="https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b" target="_blank">Open Synthesis Tutor</a>';
+     if(subject==='language' && t.includes('Golden Goblet')) extra=' <br><a class="btn secondary" href="https://learningally.org/abs-more-info" target="_blank">Open Learning Ally</a>';
+     return taskHTML(t,`${subject}-w1-${d}-${j}`,extra);
+   }).join('');
+   return `<div id="${subject}-${d}" class="day-panel ${i===0?'active-day-panel':''}"><h3>${names[d]}</h3>${tasks}</div>`;
+ }).join('');
+ box.innerHTML=`<span class="badge">Week 1</span><h2>${c.week1}</h2><div class="day-tabs">${buttons}</div>${panels}`;
+ bindSavedFields();
+}
 
-    const second = prompt('Enter the PIN again to confirm:');
-    if(second !== first){
-      alert('The PINs did not match. Please try again.');
-      return;
-    }
+function selectWeek(subject,week,btn){
+ document.querySelectorAll(`#${subject} .week-btn`).forEach(b=>b.classList.remove('current'));
+ if(btn)btn.classList.add('current');
+ renderWeek(subject,week);
+}
 
-    localStorage.setItem('parent-pin', first);
-    parentUnlocked = true;
-    alert('Parent PIN created.');
-    showPage('parent');
-    return;
-  }
+function openSubjectDay(subject,day,btn){
+ document.querySelectorAll(`#${subject}-week-content .day-panel`).forEach(p=>p.classList.remove('active-day-panel'));
+ document.getElementById(`${subject}-${day}`).classList.add('active-day-panel');
+ document.querySelectorAll(`#${subject}-week-content .day-tabs button`).forEach(b=>b.classList.remove('active-day'));
+ btn.classList.add('active-day');
+}
 
+function renderToday(){
+ const days={mon:'Monday',tue:'Tuesday',wed:'Wednesday',thu:'Thursday'};
+ Object.keys(days).forEach(day=>{
+  let body=`<span class="badge">${days[day]}</span>`;
+  ['history','math','science','language'].forEach(subject=>{
+    body+=`<h3>${curricula[subject].title}</h3>`;
+    week1[subject][day].forEach((t,j)=>{
+      let extra='';
+      if(subject==='math' && t.includes('Synthesis')) extra=' <br><a class="btn secondary" href="https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b" target="_blank">Open Synthesis Tutor</a>';
+      if(subject==='language' && t.includes('Golden Goblet')) extra=' <br><a class="btn secondary" href="https://learningally.org/abs-more-info" target="_blank">Open Learning Ally</a>';
+      body+=taskHTML(t,`${subject}-w1-${day}-${j}`,extra);
+    });
+  });
+  document.getElementById(`today-${day}`).innerHTML=body;
+ });
+ bindSavedFields();
+}
+
+function openTodayDay(id,btn){
+ document.querySelectorAll('#today .day-panel').forEach(p=>p.classList.remove('active-day-panel'));
+ document.getElementById(id).classList.add('active-day-panel');
+ document.querySelectorAll('#today .day-tabs button').forEach(b=>b.classList.remove('active-day'));
+ btn.classList.add('active-day');
+}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function bindSavedFields(){
+ document.querySelectorAll('.savecheck').forEach(c=>{
+  const k=c.dataset.key;if(!k||c.dataset.bound)return;c.dataset.bound='1';c.checked=localStorage.getItem(k)==='1';
+  c.addEventListener('change',()=>{localStorage.setItem(k,c.checked?'1':'0');syncChecks(k,c.checked);updateProgress()});
+ });
+ document.querySelectorAll('.saveanswer').forEach(el=>{const k=el.dataset.key;if(!k||el.dataset.bound)return;el.dataset.bound='1';el.value=localStorage.getItem(k)||'';el.addEventListener('input',()=>localStorage.setItem(k,el.value))});
+ updateProgress();
+}
+function syncChecks(key,value){document.querySelectorAll(`.savecheck[data-key="${key}"]`).forEach(c=>c.checked=value)}
+function updateProgress(){
+ const keys=[...new Set([...document.querySelectorAll('.savecheck')].map(c=>c.dataset.key).filter(Boolean))];
+ const done=keys.filter(k=>localStorage.getItem(k)==='1').length;
+ const pct=keys.length?Math.round(done/keys.length*100):0;
+ document.getElementById('bar').style.width=pct+'%';document.getElementById('progressText').textContent=pct+'% complete';
+}
+let parentUnlocked=false;
+
+function showParentLock(){
   if(parentUnlocked){
     showPage('parent');
     return;
   }
 
-  const entered = prompt('Enter Parent PIN:');
-  if(entered === null) return;
+  const saved=localStorage.getItem('parent-pin');
+  const message=document.getElementById('parentLockMessage');
+  const help=document.getElementById('parentSetupHelp');
+  const input=document.getElementById('parentPinInput');
 
-  if(entered === savedPin){
-    parentUnlocked = true;
+  input.value='';
+  if(saved){
+    message.textContent='Enter your Parent PIN.';
+    help.textContent='Enter the PIN you created on this device.';
+  }else{
+    message.textContent='Create your Parent PIN.';
+    help.textContent='Enter a new 4–6 digit PIN. This PIN will be saved on this device.';
+  }
+
+  showPage('parent-lock');
+  setTimeout(()=>input.focus(),100);
+}
+
+function submitParentPin(){
+  const input=document.getElementById('parentPinInput');
+  const entered=input.value.trim();
+  const saved=localStorage.getItem('parent-pin');
+
+  if(!/^\d{4,6}$/.test(entered)){
+    alert('Please enter 4–6 numbers.');
+    return;
+  }
+
+  if(!saved){
+    localStorage.setItem('parent-pin',entered);
+    parentUnlocked=true;
+    alert('Parent PIN created.');
     showPage('parent');
-  } else {
+    return;
+  }
+
+  if(entered===saved){
+    parentUnlocked=true;
+    showPage('parent');
+  }else{
     alert('Incorrect PIN.');
+    input.value='';
+    input.focus();
   }
 }
 
 function changeParentPin(){
-  const savedPin = localStorage.getItem('parent-pin');
-  const current = prompt('Enter your current Parent PIN:');
-  if(current === null) return;
+  const current=prompt('Enter your current Parent PIN:');
+  if(current===null) return;
 
-  if(current !== savedPin){
+  if(current!==localStorage.getItem('parent-pin')){
     alert('Incorrect PIN.');
     return;
   }
 
-  const next = prompt('Create a new 4–6 digit Parent PIN:');
-  if(next === null) return;
+  const next=prompt('Enter a new 4–6 digit PIN:');
+  if(next===null) return;
 
   if(!/^\d{4,6}$/.test(next)){
     alert('Please use 4–6 numbers.');
     return;
   }
 
-  const confirmPin = prompt('Enter the new PIN again:');
-  if(confirmPin !== next){
+  const again=prompt('Enter the new PIN again:');
+  if(next!==again){
     alert('The PINs did not match.');
     return;
   }
 
-  localStorage.setItem('parent-pin', next);
-  parentUnlocked = true;
+  localStorage.setItem('parent-pin',next);
+  parentUnlocked=true;
   alert('Parent PIN changed.');
 }
 
-
+function saveMomNote(){const v=document.getElementById('momNoteInput').value.trim()||'Have a great school day!';localStorage.setItem('mom-note',v);document.getElementById('momNoteDisplay').textContent=v;alert('Mom’s note saved.')}
+function loadMomNote(){const v=localStorage.getItem('mom-note')||'Have a great school day!';document.getElementById('momNoteInput').value=v;document.getElementById('momNoteDisplay').textContent=v}
+function resetChecks(){if(confirm('Reset every checkbox?')){Object.keys(localStorage).filter(k=>k.includes('-w1-')).forEach(k=>localStorage.removeItem(k));document.querySelectorAll('.savecheck').forEach(c=>c.checked=false);updateProgress()}}
 async function askCoach(){
-  const subject = document.getElementById('coach-subject').value;
-  const question = document.getElementById('coach-question').value.trim();
-  const status = document.getElementById('coach-status');
-
-  if(!question){
-    alert('Type your question first.');
-    return;
-  }
-
-  const prompt =
-`You are Coach for Rhyder, a sixth-grade homeschool student.
-
-Subject: ${subject}
-Rhyder's question: ${question}
-
-Rules:
-- Explain at a sixth-grade level.
-- Do not complete the assignment or give the final answer.
-- Ask what he has tried.
-- Give one hint at a time.
-- Use short, clear steps.
-- Encourage effort and help him think independently.`;
-
-  try{
-    await navigator.clipboard.writeText(prompt);
-    status.style.display = 'block';
-    status.innerHTML = '<strong>Question copied.</strong> ChatGPT is opening. Paste the question into the message box and send it.';
-  }catch(e){
-    status.style.display = 'block';
-    status.innerHTML = '<strong>Copy this into ChatGPT:</strong><br><br>' + prompt.replace(/\n/g,'<br>');
-  }
-
-  window.open('https://chatgpt.com/', '_blank');
+ const q=document.getElementById('coach-question').value.trim();if(!q){alert('Type your question first.');return}
+ const s=document.getElementById('coach-subject').value;
+ const p=`You are Coach for Rhyder, a sixth-grade homeschool student.\n\nSubject: ${s}\nQuestion: ${q}\n\nExplain at a sixth-grade level. Do not complete the assignment or give the final answer. Ask what he has tried, give one hint at a time, use short clear steps, and encourage independent thinking.`;
+ try{await navigator.clipboard.writeText(p);document.getElementById('coach-status').style.display='block';document.getElementById('coach-status').innerHTML='<strong>Question copied.</strong> Paste it into ChatGPT.'}catch(e){document.getElementById('coach-status').style.display='block';document.getElementById('coach-status').textContent=p}
+ window.open('https://chatgpt.com/','_blank');
 }
-
-function clearCoach(){
-  document.getElementById('coach-question').value = '';
-  document.getElementById('coach-status').style.display = 'none';
-}
-
-function showPage(id){
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- document.getElementById(id).classList.add('active'); window.scrollTo(0,0);
-}
-const checks=[...document.querySelectorAll('.savecheck')];
-checks.forEach((c,i)=>{c.dataset.key='check-'+i;c.checked=localStorage.getItem(c.dataset.key)==='1';
- c.addEventListener('change',()=>{localStorage.setItem(c.dataset.key,c.checked?'1':'0');updateProgress();});});
-document.querySelectorAll('.saveanswer').forEach(el=>{const k=el.dataset.key;el.value=localStorage.getItem(k)||'';
- el.addEventListener('input',()=>localStorage.setItem(k,el.value));});
-function updateProgress(){const done=checks.filter(c=>c.checked).length;const pct=checks.length?Math.round(done/checks.length*100):0;
- document.getElementById('bar').style.width=pct+'%';document.getElementById('progressText').textContent=pct+'% complete';
- const pageBar=document.getElementById('progressPageBar');
- const pageText=document.getElementById('progressPageText');
- if(pageBar) pageBar.style.width=pct+'%';
- if(pageText) pageText.textContent=pct+'% complete';}
-function openSavedLink(key){let v=(localStorage.getItem(key)||'').trim();if(!v){alert('Paste the link in the box first.');return;}
- if(!/^https?:\/\//i.test(v))v='https://'+v;window.open(v,'_blank');}
-function printCenter(){const p=document.getElementById('print');p.classList.add('printing');window.print();p.classList.remove('printing');}
-function resetChecks(){if(confirm('Reset every lesson checkbox?')){checks.forEach(c=>{c.checked=false;localStorage.removeItem(c.dataset.key)});updateProgress();}}
-function updateClock(){
- const d=new Date(); const h=d.getHours();
- document.getElementById('greeting').textContent=(h<12?'Good Morning':h<17?'Good Afternoon':'Good Evening')+', Rhyder!';
- document.getElementById('dateLine').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
- document.getElementById('timeLine').textContent=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
-}
-function weatherCodeText(code){
- const m={0:'Clear',1:'Mostly clear',2:'Partly cloudy',3:'Cloudy',45:'Foggy',48:'Foggy',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',
- 61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',80:'Rain showers',81:'Rain showers',82:'Heavy showers',95:'Thunderstorms'};
- return m[code]||'Current conditions';
-}
-async function fetchWeather(lat,lon,label){
- try{
-  const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&timezone=auto&forecast_days=1`;
-  const r=await fetch(u); const w=await r.json();
-  const now=Math.round(w.current.temperature_2m), hi=Math.round(w.daily.temperature_2m_max[0]), lo=Math.round(w.daily.temperature_2m_min[0]), rain=w.daily.precipitation_probability_max[0];
-  document.getElementById('weatherText').innerHTML=`<strong>${label}</strong><br>${now}°F • ${weatherCodeText(w.current.weather_code)}<br>High ${hi}° • Low ${lo}°<br>Rain chance ${rain}%`;
- }catch(e){document.getElementById('weatherText').textContent='Weather unavailable. Internet is required.';}
-}
-function loadWeather(force=false){
- document.getElementById('weatherText').textContent='Loading weather…';
- if(navigator.geolocation){
-  navigator.geolocation.getCurrentPosition(
-   p=>fetchWeather(p.coords.latitude,p.coords.longitude,'Current location'),
-   ()=>fetchWeather(35.4492,-86.7889,'Lewisburg, TN'),
-   {timeout:5000}
-  );
- }else fetchWeather(35.4492,-86.7889,'Lewisburg, TN');
-}
-function saveMomNote(){const v=document.getElementById('momNoteInput').value.trim()||'Have a great school day!';
- localStorage.setItem('mom-note',v);document.getElementById('momNoteDisplay').textContent=v;alert('Mom’s note saved.');}
-function loadMomNote(){const v=localStorage.getItem('mom-note')||'Have a great school day!';
- document.getElementById('momNoteInput').value=v;document.getElementById('momNoteDisplay').textContent=v;}
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));}
-updateProgress(); updateClock(); setInterval(updateClock,30000); loadMomNote(); loadWeather();
+function clearCoach(){document.getElementById('coach-question').value='';document.getElementById('coach-status').style.display='none'}
+function printCenter(){const p=document.getElementById('print');p.classList.add('printing');window.print();p.classList.remove('printing')}
+function updateClock(){const d=new Date(),h=d.getHours();document.getElementById('greeting').textContent=(h<12?'Good Morning':h<17?'Good Afternoon':'Good Evening')+', Rhyder!';document.getElementById('dateLine').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});document.getElementById('timeLine').textContent=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}
+function weatherCode(code){const m={0:'Clear',1:'Mostly clear',2:'Partly cloudy',3:'Cloudy',45:'Foggy',51:'Light drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',80:'Showers',81:'Showers',82:'Heavy showers',95:'Thunderstorms'};return m[code]||'Current conditions'}
+async function fetchWeather(lat,lon,label){try{const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&timezone=auto&forecast_days=1`;const r=await fetch(u),w=await r.json();document.getElementById('weatherText').innerHTML=`<strong>${label}</strong><br>${Math.round(w.current.temperature_2m)}°F • ${weatherCode(w.current.weather_code)}<br>High ${Math.round(w.daily.temperature_2m_max[0])}° • Low ${Math.round(w.daily.temperature_2m_min[0])}°<br>Rain chance ${w.daily.precipitation_probability_max[0]}%`}catch(e){document.getElementById('weatherText').textContent='Weather unavailable. Internet is required.'}}
+function loadWeather(){document.getElementById('weatherText').textContent='Loading weather…';if(navigator.geolocation){navigator.geolocation.getCurrentPosition(p=>fetchWeather(p.coords.latitude,p.coords.longitude,'Current location'),()=>fetchWeather(35.4492,-86.7889,'Lewisburg, TN'),{timeout:5000})}else fetchWeather(35.4492,-86.7889,'Lewisburg, TN')}
+['history','math','science','language'].forEach(renderSubject);renderToday();bindSavedFields();loadMomNote();updateClock();setInterval(updateClock,30000);loadWeather();
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));
 </script>
 </body>
 </html>
