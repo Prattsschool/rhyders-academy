@@ -1,7 +1,7 @@
 {
   "name": "Rhyder's Academy",
   "short_name": "Rhyder Academy",
-  "start_url": "./index.html?v=week1-fixed",
+  "start_url": "./index.html?v=original-layout-latest-curriculum",
   "scope": "./",
   "display": "standalone",
   "background_color": "#efe6d5",
