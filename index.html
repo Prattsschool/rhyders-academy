@@ -50,9 +50,12 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
 
 <nav>
   <button onclick="showPage('home')">Home</button>
-  <button onclick="showPage('today')">Week 1</button>
+  <button onclick="showPage('today')">Today</button>
   <button onclick="showPage('history')">History</button>
-  <button onclick="showPage('subjects')">Subjects</button>
+  <button onclick="showPage('math')">Math</button>
+  <button onclick="showPage('science')">Science</button>
+  <button onclick="showPage('reading')">Reading</button>
+  <button onclick="showPage('writing')">Writing</button>
   <button onclick="showPage('research')">Research</button>
   <button onclick="showPage('print')">Print</button>
   <button onclick="openParent()">🔒 Parent</button>
@@ -83,7 +86,10 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
   <div class="grid">
     <div class="subject" onclick="showPage('today')"><h3>✅ Today's Lessons</h3><p>Work through the day in order.</p></div>
     <div class="subject" onclick="showPage('history')"><h3>📖 History</h3><p>Mystery of History, videos, timeline and writing.</p></div>
-    <div class="subject" onclick="showPage('subjects')"><h3>🧪 ➗ 📚</h3><p>Science, math, reading and writing.</p></div>
+    <div class="subject" onclick="showPage('math')"><h3>➗ Math</h3><p>Abeka and Synthesis Tutor.</p></div>
+    <div class="subject" onclick="showPage('science')"><h3>🧪 Science</h3><p>Lessons, videos and experiments.</p></div>
+    <div class="subject" onclick="showPage('reading')"><h3>📚 Reading</h3><p>Daily reading and responses.</p></div>
+    <div class="subject" onclick="showPage('writing')"><h3>✍️ Writing</h3><p>Paragraphs connected to lessons.</p></div>
     <div class="subject" onclick="showPage('research')"><h3>🕵️ Research</h3><p>History Detective case file.</p></div>
     <div class="subject" onclick="showPage('print')"><h3>🖨️ Print Center</h3><p>Week 1 printable pages.</p></div>
   </div>
@@ -150,26 +156,70 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
   </div>
 </section>
 
-<section id="subjects" class="page">
-  <div class="card"><h2>Other Subjects</h2></div>
-  <div class="card"><h3>🧪 Science</h3>
-    <input class="saveanswer" data-key="science-link" type="text" placeholder="Mom can paste the science link here">
-    <p><button class="btn" onclick="openSavedLink('science-link')">Open Science</button></p>
-    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's science assignment when scheduled.</span></label>
+
+<section id="math" class="page">
+  <div class="card">
+    <h2>➗ Math</h2>
+    <p><strong>Main curriculum:</strong> Abeka 5th Grade Math</p>
   </div>
-  <div class="card"><h3>➗ Math</h3>
-    <input class="saveanswer" data-key="math-link" type="text" placeholder="Mom can paste Rhyder's math program link here">
-    <p><button class="btn" onclick="openSavedLink('math-link')">Open Math</button></p>
+
+  <div class="card">
+    <h3>Today's Math</h3>
+    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's assigned Abeka lesson.</span></label>
+    <label class="task"><input class="savecheck" type="checkbox"><span>Complete the assigned workbook problems.</span></label>
+    <label class="task"><input class="savecheck" type="checkbox"><span>Use Synthesis Tutor for practice or extra help.</span></label>
+    <p><a class="btn secondary" href="https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b" target="_blank">Open Synthesis Tutor</a></p>
   </div>
-  <div class="card"><h3>📚 Reading</h3>
-    <textarea class="saveanswer" data-key="reading-response" rows="4" placeholder="Write 2–3 sentences about today's reading."></textarea>
-  </div>
-  <div class="card"><h3>✍️ Writing</h3><p>Writing is connected to history and science so there is less busywork.</p></div>
-  <div class="card notice"><strong>Google submission:</strong>
-    <input class="saveanswer" data-key="google-form" type="text" placeholder="Paste weekly Google Form link">
-    <p><button class="btn secondary" onclick="openSavedLink('google-form')">Submit Work to Mom</button></p>
+
+  <div class="card">
+    <h3>Mom's Math Assignment</h3>
+    <input class="saveanswer" data-key="math-assignment" type="text" placeholder="Example: Abeka Lesson 1, pages 1–2">
   </div>
 </section>
+
+<section id="science" class="page">
+  <div class="card">
+    <h2>🧪 Science</h2>
+    <p>Science lessons and links will be loaded here.</p>
+  </div>
+
+  <div class="card">
+    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's science lesson.</span></label>
+    <label class="task"><input class="savecheck" type="checkbox"><span>Watch the assigned science video.</span></label>
+    <label class="task"><input class="savecheck" type="checkbox"><span>Complete the activity or experiment when assigned.</span></label>
+    <input class="saveanswer" data-key="science-link" type="text" placeholder="Mom can paste the science program or video link here">
+    <p><button class="btn" onclick="openSavedLink('science-link')">Open Science</button></p>
+  </div>
+</section>
+
+<section id="reading" class="page">
+  <div class="card">
+    <h2>📚 Reading</h2>
+  </div>
+
+  <div class="card">
+    <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
+    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's reading response when assigned.</span></label>
+    <textarea class="saveanswer" data-key="reading-response" rows="6" placeholder="Write 2–3 sentences about what you read."></textarea>
+  </div>
+</section>
+
+<section id="writing" class="page">
+  <div class="card">
+    <h2>✍️ Writing</h2>
+    <p>Writing assignments will connect to history, science, and reading.</p>
+  </div>
+
+  <div class="card">
+    <label class="task"><input class="savecheck" type="checkbox"><span>Complete today's assigned paragraph or writing activity.</span></label>
+    <textarea class="saveanswer" data-key="writing-response" rows="9" placeholder="Write today's assignment here."></textarea>
+  </div>
+
+  <div class="card">
+    <p class="small">Cursive will be added later.</p>
+  </div>
+</section>
+
 
 <section id="research" class="page">
   <div class="card"><h2>🕵️ History Detective Case File #1</h2><h3>How do sources help us study Noah and the Flood?</h3></div>
