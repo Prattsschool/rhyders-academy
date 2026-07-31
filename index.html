@@ -45,7 +45,7 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
 <body>
 <header>
   <h1>🎓 Rhyder's Academy</h1>
-  <p>Pratt Homeschool • 6th Grade</p>
+  <p>Pratt Homeschool • 6th Grade <span style="opacity:.75">• Master v1.0</span></p>
 </header>
 
 <nav>
@@ -57,6 +57,7 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
   <button onclick="showPage('reading')">Reading</button>
   <button onclick="showPage('writing')">Writing</button>
   <button onclick="showPage('research')">Research</button>
+  <button onclick="showPage('progress')">Progress</button>
   <button onclick="showPage('print')">Print</button>
   <button class="secondary" onclick="showPage('coach')">💬 Ask Coach</button>
   <button onclick="openParent()">🔒 Parent</button>
@@ -237,6 +238,21 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
   </div>
 </section>
 
+
+<section id="progress" class="page">
+  <div class="card">
+    <h2>📊 Progress</h2>
+    <p>Rhyder's completed checkboxes are saved on this device.</p>
+    <div class="progress"><span id="progressPageBar"></span></div>
+    <p><strong id="progressPageText">0% complete</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Week 1 Goal</h3>
+    <p>Complete the assigned History, Math, Science, Reading, and Writing work for the four-day school week.</p>
+  </div>
+</section>
+
 <section id="print" class="page">
   <div class="card no-print"><h2>Print Center</h2><button onclick="printCenter()">Print All Week 1 Sheets</button></div>
   <div class="print-sheet"><h1>Rhyder's Academy</h1><h2>Week 1 Creation Timeline</h2>
@@ -295,7 +311,7 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
 </section>
 
 <section id="parent" class="page">
-  <div class="card"><h2>Parent</h2><p>These settings save only on this device.</p></div>
+  <div class="card"><h2>Parent</h2><p><span class="badge">Master Version 1.0</span></p><p>These settings save only on this device.</p></div>
   <div class="card notice"><strong>What is Pratt Homeschool Drive?</strong><br>It is your private filing cabinet for worksheets, submitted work, photos, and school records. Rhyder does not need to open it during his normal school day.</div>
   <div class="card"><h3>Mom's Note</h3>
     <textarea id="momNoteInput" rows="4" placeholder="Example: Finish history before lunch."></textarea>
@@ -440,7 +456,11 @@ checks.forEach((c,i)=>{c.dataset.key='check-'+i;c.checked=localStorage.getItem(c
 document.querySelectorAll('.saveanswer').forEach(el=>{const k=el.dataset.key;el.value=localStorage.getItem(k)||'';
  el.addEventListener('input',()=>localStorage.setItem(k,el.value));});
 function updateProgress(){const done=checks.filter(c=>c.checked).length;const pct=checks.length?Math.round(done/checks.length*100):0;
- document.getElementById('bar').style.width=pct+'%';document.getElementById('progressText').textContent=pct+'% complete';}
+ document.getElementById('bar').style.width=pct+'%';document.getElementById('progressText').textContent=pct+'% complete';
+ const pageBar=document.getElementById('progressPageBar');
+ const pageText=document.getElementById('progressPageText');
+ if(pageBar) pageBar.style.width=pct+'%';
+ if(pageText) pageText.textContent=pct+'% complete';}
 function openSavedLink(key){let v=(localStorage.getItem(key)||'').trim();if(!v){alert('Paste the link in the box first.');return;}
  if(!/^https?:\/\//i.test(v))v='https://'+v;window.open(v,'_blank');}
 function printCenter(){const p=document.getElementById('print');p.classList.add('printing');window.print();p.classList.remove('printing');}
