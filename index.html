@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#6d4c2f">
+  <title>Rhyder's Academy</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>🎓 Rhyder's Academy</h1>
+    <p>Pratt Homeschool • 6th Grade • Clean Master v1.0</p>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Main navigation">
+  <button data-page="home">Home</button>
+  <button data-page="today">Today</button>
+  <button data-page="history">History</button>
+  <button data-page="math">Math</button>
+  <button data-page="science">Science</button>
+  <button data-page="reading">Reading</button>
+  <button data-page="writing">Writing</button>
+  <button data-page="research">Research</button>
+  <button data-page="progress">Progress</button>
+  <button data-page="print">Print</button>
+  <button class="coach-btn" data-page="coach">💬 Ask Coach</button>
+  <button id="parentButton">🔒 Parent</button>
+</nav>
+
+<main id="app" class="app"></main>
+
+<script src="data/week1.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "Rhyder's Academy",
+  "short_name": "Rhyder Academy",
+  "start_url": "./index.html?v=clean-v1",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#efe6d5",
+  "theme_color": "#6d4c2f",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
