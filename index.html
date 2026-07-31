@@ -58,6 +58,7 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
   <button onclick="showPage('writing')">Writing</button>
   <button onclick="showPage('research')">Research</button>
   <button onclick="showPage('print')">Print</button>
+  <button class="secondary" onclick="showPage('coach')">💬 Ask Coach</button>
   <button onclick="openParent()">🔒 Parent</button>
 </nav>
 
@@ -91,6 +92,8 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
     <div class="subject" onclick="showPage('reading')"><h3>📚 Reading</h3><p>Daily reading and responses.</p></div>
     <div class="subject" onclick="showPage('writing')"><h3>✍️ Writing</h3><p>Paragraphs connected to lessons.</p></div>
     <div class="subject" onclick="showPage('research')"><h3>🕵️ Research</h3><p>History Detective case file.</p></div>
+    
+    <div class="subject" onclick="showPage('coach')"><h3>💬 Ask Coach</h3><p>Get a hint or explanation without being given the answer.</p></div>
     <div class="subject" onclick="showPage('print')"><h3>🖨️ Print Center</h3><p>Week 1 printable pages.</p></div>
   </div>
 
@@ -253,6 +256,44 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
   </div>
 </section>
 
+
+<section id="coach" class="page">
+  <div class="card">
+    <h2>💬 Ask Coach</h2>
+    <p>Use this when you are stuck. Coach should explain, give hints, and ask questions—not do the assignment for you.</p>
+  </div>
+
+  <div class="card">
+    <label for="coach-subject"><strong>Subject</strong></label>
+    <select id="coach-subject" style="width:100%;padding:10px;border:1px solid #bbb;border-radius:8px;font:inherit;margin:8px 0 14px;">
+      <option>History</option>
+      <option>Math</option>
+      <option>Science</option>
+      <option>Reading</option>
+      <option>Writing</option>
+      <option>Research</option>
+    </select>
+
+    <label for="coach-question"><strong>What are you stuck on?</strong></label>
+    <textarea id="coach-question" rows="7" placeholder="Example: I do not understand what covenant means in this lesson."></textarea>
+
+    <p>
+      <button class="secondary" onclick="askCoach()">Copy Question & Open ChatGPT</button>
+      <button class="light" onclick="clearCoach()">Clear</button>
+    </p>
+
+    <div id="coach-status" class="notice" style="display:none;"></div>
+  </div>
+
+  <div class="card">
+    <h3>Coach Rules</h3>
+    <p class="small">
+      Explain at a sixth-grade level. Do not write the assignment or give a final answer.
+      Give one hint at a time, ask Rhyder what he has tried, and help him think through the problem.
+    </p>
+  </div>
+</section>
+
 <section id="parent" class="page">
   <div class="card"><h2>Parent</h2><p>These settings save only on this device.</p></div>
   <div class="card notice"><strong>What is Pratt Homeschool Drive?</strong><br>It is your private filing cabinet for worksheets, submitted work, photos, and school records. Rhyder does not need to open it during his normal school day.</div>
@@ -345,6 +386,48 @@ function changeParentPin(){
   localStorage.setItem('parent-pin', next);
   parentUnlocked = true;
   alert('Parent PIN changed.');
+}
+
+
+async function askCoach(){
+  const subject = document.getElementById('coach-subject').value;
+  const question = document.getElementById('coach-question').value.trim();
+  const status = document.getElementById('coach-status');
+
+  if(!question){
+    alert('Type your question first.');
+    return;
+  }
+
+  const prompt =
+`You are Coach for Rhyder, a sixth-grade homeschool student.
+
+Subject: ${subject}
+Rhyder's question: ${question}
+
+Rules:
+- Explain at a sixth-grade level.
+- Do not complete the assignment or give the final answer.
+- Ask what he has tried.
+- Give one hint at a time.
+- Use short, clear steps.
+- Encourage effort and help him think independently.`;
+
+  try{
+    await navigator.clipboard.writeText(prompt);
+    status.style.display = 'block';
+    status.innerHTML = '<strong>Question copied.</strong> ChatGPT is opening. Paste the question into the message box and send it.';
+  }catch(e){
+    status.style.display = 'block';
+    status.innerHTML = '<strong>Copy this into ChatGPT:</strong><br><br>' + prompt.replace(/\n/g,'<br>');
+  }
+
+  window.open('https://chatgpt.com/', '_blank');
+}
+
+function clearCoach(){
+  document.getElementById('coach-question').value = '';
+  document.getElementById('coach-status').style.display = 'none';
 }
 
 function showPage(id){
