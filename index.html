@@ -50,12 +50,12 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
 
 <nav>
   <button onclick="showPage('home')">Home</button>
-  <button onclick="showPage('today')">Today</button>
+  <button onclick="showPage('today')">Week 1</button>
   <button onclick="showPage('history')">History</button>
   <button onclick="showPage('subjects')">Subjects</button>
   <button onclick="showPage('research')">Research</button>
   <button onclick="showPage('print')">Print</button>
-  <button onclick="showPage('parent')">Parent</button>
+  <button onclick="openParent()">🔒 Parent</button>
 </nav>
 
 <main>
@@ -88,15 +88,13 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
     <div class="subject" onclick="showPage('print')"><h3>🖨️ Print Center</h3><p>Week 1 printable pages.</p></div>
   </div>
 
-  <div class="card">
-    <a class="btn secondary" href="https://drive.google.com/drive/folders/1P0YHmUGEadS95J3PVRqxYUepwUcIg7Hu?usp=sharing" target="_blank">📁 Open Pratt Homeschool Drive</a>
-  </div>
+
 </section>
 
 <section id="today" class="page">
   <div class="card day"><h2>Week 1 Daily Lessons</h2><p class="small">Use the correct day. Checkboxes save on this device.</p></div>
 
-  <div class="card day"><h3>Monday • Creation</h3>
+  <div id="monday" class="card day"><h3>Monday • Creation</h3>
     <label class="task"><input class="savecheck" type="checkbox"><span>Read <em>Mystery of History</em>, Lesson 1.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Watch <a href="https://bibleproject.com/videos/genesis-1/" target="_blank">Genesis 1</a> as part of history.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Print and complete the Creation Timeline.</span></label>
@@ -105,7 +103,7 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
     <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
   </div>
 
-  <div class="card day"><h3>Tuesday • Adam and Eve</h3>
+  <div id="tuesday" class="card day"><h3>Tuesday • Adam and Eve</h3>
     <label class="task"><input class="savecheck" type="checkbox"><span>Read the assigned Mystery of History section.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Watch <a href="https://bibleproject.com/videos/genesis-1-11/" target="_blank">Genesis 1–11 Overview</a>.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Answer: What responsibility did people receive?</span></label>
@@ -113,7 +111,7 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
     <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
   </div>
 
-  <div class="card day"><h3>Wednesday • Cain, Abel and Early Generations</h3>
+  <div id="wednesday" class="card day"><h3>Wednesday • Cain, Abel and Early Generations</h3>
     <label class="task"><input class="savecheck" type="checkbox"><span>Read the assigned Mystery of History section.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Review Week 1 vocabulary.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Write one paragraph about a lesson learned from the story.</span></label>
@@ -121,7 +119,7 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
     <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
   </div>
 
-  <div class="card day"><h3>Thursday • Noah and the Flood</h3>
+  <div id="thursday" class="card day"><h3>Thursday • Noah and the Flood</h3>
     <label class="task"><input class="savecheck" type="checkbox"><span>Read the assigned Mystery of History section.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Explore <a href="https://isgenesishistory.com/free-videos-is-genesis-history/" target="_blank">free Is Genesis History? videos</a>.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Begin the History Detective Case File.</span></label>
@@ -129,7 +127,7 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
     <label class="task"><input class="savecheck" type="checkbox"><span>Read for 20–30 minutes.</span></label>
   </div>
 
-  <div class="card day"><h3>Friday • Catch Up and Review</h3>
+  <div id="friday" class="card day"><h3>Friday • Catch Up and Review</h3>
     <label class="task"><input class="savecheck" type="checkbox"><span>Finish any incomplete work.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Complete the History Detective conclusion.</span></label>
     <label class="task"><input class="savecheck" type="checkbox"><span>Show Mom your printed and written work.</span></label>
@@ -206,20 +204,99 @@ textarea,input[type=text]{width:100%;padding:10px;border:1px solid #bbb;border-r
 </section>
 
 <section id="parent" class="page">
-  <div class="card"><h2>Parent Setup</h2><p>These settings save only on this device.</p></div>
+  <div class="card"><h2>Parent</h2><p>These settings save only on this device.</p></div>
+  <div class="card notice"><strong>What is Pratt Homeschool Drive?</strong><br>It is your private filing cabinet for worksheets, submitted work, photos, and school records. Rhyder does not need to open it during his normal school day.</div>
   <div class="card"><h3>Mom's Note</h3>
     <textarea id="momNoteInput" rows="4" placeholder="Example: Finish history before lunch."></textarea>
     <p><button onclick="saveMomNote()">Save Note</button></p>
   </div>
   <div class="card"><h3>Quick Links</h3>
-    <p><a class="btn secondary" href="https://drive.google.com/drive/folders/1P0YHmUGEadS95J3PVRqxYUepwUcIg7Hu?usp=sharing" target="_blank">Open Pratt Homeschool Drive</a></p>
-    <p class="small">Paste the math, science and Google Form links on the Subjects page once they are ready.</p>
+    <p><a class="btn secondary" href="https://drive.google.com/drive/folders/1P0YHmUGEadS95J3PVRqxYUepwUcIg7Hu?usp=sharing" target="_blank">📁 Open Parent Google Drive</a></p>
+    <p class="small">Use this only when you need to manage files. Paste the math, science and Google Form links on the Subjects page once they are ready.</p>
+  </div>
+  <div class="card">
+    <h3>Parent PIN</h3>
+    <p class="small">The PIN is saved only on this device. It keeps Rhyder from accidentally changing parent settings.</p>
+    <button class="secondary" onclick="changeParentPin()">Change Parent PIN</button>
   </div>
   <div class="card"><button class="light" onclick="resetChecks()">Reset All Checkboxes</button></div>
 </section>
 </main>
 
 <script>
+
+let parentUnlocked = false;
+
+function openParent(){
+  const savedPin = localStorage.getItem('parent-pin');
+
+  if(!savedPin){
+    const first = prompt('Create a 4–6 digit Parent PIN:');
+    if(first === null) return;
+
+    if(!/^\d{4,6}$/.test(first)){
+      alert('Please use 4–6 numbers.');
+      return;
+    }
+
+    const second = prompt('Enter the PIN again to confirm:');
+    if(second !== first){
+      alert('The PINs did not match. Please try again.');
+      return;
+    }
+
+    localStorage.setItem('parent-pin', first);
+    parentUnlocked = true;
+    alert('Parent PIN created.');
+    showPage('parent');
+    return;
+  }
+
+  if(parentUnlocked){
+    showPage('parent');
+    return;
+  }
+
+  const entered = prompt('Enter Parent PIN:');
+  if(entered === null) return;
+
+  if(entered === savedPin){
+    parentUnlocked = true;
+    showPage('parent');
+  } else {
+    alert('Incorrect PIN.');
+  }
+}
+
+function changeParentPin(){
+  const savedPin = localStorage.getItem('parent-pin');
+  const current = prompt('Enter your current Parent PIN:');
+  if(current === null) return;
+
+  if(current !== savedPin){
+    alert('Incorrect PIN.');
+    return;
+  }
+
+  const next = prompt('Create a new 4–6 digit Parent PIN:');
+  if(next === null) return;
+
+  if(!/^\d{4,6}$/.test(next)){
+    alert('Please use 4–6 numbers.');
+    return;
+  }
+
+  const confirmPin = prompt('Enter the new PIN again:');
+  if(confirmPin !== next){
+    alert('The PINs did not match.');
+    return;
+  }
+
+  localStorage.setItem('parent-pin', next);
+  parentUnlocked = true;
+  alert('Parent PIN changed.');
+}
+
 function showPage(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
  document.getElementById(id).classList.add('active'); window.scrollTo(0,0);
