@@ -1,7 +1,7 @@
 {
   "name": "Rhyder's Academy",
   "short_name": "Rhyder Academy",
-  "start_url": "./index.html?v=clean-v1",
+  "start_url": "./index.html?v=clean-v1-1-grammar",
   "scope": "./",
   "display": "standalone",
   "background_color": "#efe6d5",

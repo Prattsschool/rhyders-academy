@@ -2,8 +2,8 @@
   "use strict";
   const app = document.getElementById("app");
   const week = window.RHYDER_WEEK1;
-  const subjects = ["history","math","science","reading","writing"];
-  const subjectIcons = {history:"📖",math:"➗",science:"🧪",reading:"📚",writing:"✍️"};
+  const subjects = ["history","math","science","reading","grammar","writing"];
+  const subjectIcons = {history:"📖",math:"➗",science:"🧪",reading:"📚",grammar:"✏️",writing:"✍️"};
   let currentPage = "home";
   let parentUnlocked = false;
 

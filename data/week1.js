@@ -157,6 +157,32 @@ window.RHYDER_WEEK1 = {
       ]}
     }
   },
+
+  grammar: {
+    title: "Daily Grams + Easy Grammar",
+    days: {
+      Monday:{title:"Daily Grams 34 • Easy Grammar 53 — Verbs",tasks:[
+        {type:"check",text:"Complete Daily Grams Lesson 34."},
+        {type:"check",text:"Complete Easy Grammar Lesson 53 — Verbs."},
+        {type:"check",text:"Check your work and correct any mistakes."}
+      ]},
+      Tuesday:{title:"Daily Grams 35 • Easy Grammar 54",tasks:[
+        {type:"check",text:"Complete Daily Grams Lesson 35."},
+        {type:"check",text:"Complete Easy Grammar Lesson 54."},
+        {type:"check",text:"Review the verb work from Monday."}
+      ]},
+      Wednesday:{title:"Daily Grams 36 • Easy Grammar 55",tasks:[
+        {type:"check",text:"Complete Daily Grams Lesson 36."},
+        {type:"check",text:"Complete Easy Grammar Lesson 55."},
+        {type:"check",text:"Correct any missed problems."}
+      ]},
+      Thursday:{title:"Daily Grams 37 • Easy Grammar 56",tasks:[
+        {type:"check",text:"Complete Daily Grams Lesson 37."},
+        {type:"check",text:"Complete Easy Grammar Lesson 56."},
+        {type:"check",text:"Complete a quick end-of-week grammar review."}
+      ]}
+    }
+  },
   writing: {
     title: "Writing Connected to History",
     days: {
