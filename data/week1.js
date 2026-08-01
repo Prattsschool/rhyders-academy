@@ -51,31 +51,107 @@ window.RHYDER_WEEK1 = {
     }
   },
   math: {
-    title: "Abeka 5th Grade Math + Synthesis Tutor",
-    days: {
-      Monday:{title:"Abeka Lesson 16",tasks:[
-        {type:"check",text:"Complete Abeka Math Lesson 16."},
-        {type:"check",text:"Complete the Lesson 16 workbook problems assigned by Mom."},
-        {type:"link",text:"Open Synthesis Tutor",url:"https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b"},
-        {type:"check",text:"Complete one Synthesis Tutor session."}
-      ]},
-      Tuesday:{title:"Abeka Lesson 17",tasks:[
-        {type:"check",text:"Complete Abeka Math Lesson 17."},
-        {type:"check",text:"Complete the Lesson 17 workbook problems assigned by Mom."},
-        {type:"link",text:"Open Synthesis Tutor",url:"https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b"},
-        {type:"check",text:"Complete one Synthesis Tutor session."}
-      ]},
-      Wednesday:{title:"Abeka Lesson 18",tasks:[
-        {type:"check",text:"Complete Abeka Math Lesson 18."},
-        {type:"check",text:"Complete the Lesson 18 workbook problems assigned by Mom."},
-        {type:"link",text:"Open Synthesis Tutor",url:"https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b"},
-        {type:"check",text:"Complete one Synthesis Tutor session."}
-      ]},
-      Thursday:{title:"Abeka Lesson 19",tasks:[
-        {type:"check",text:"Complete Abeka Math Lesson 19."},
-        {type:"check",text:"Complete the Lesson 19 workbook problems assigned by Mom."},
-        {type:"link",text:"Open Synthesis Tutor",url:"https://tutor.synthesis.com/m/abd80120-8823-48ed-8b36-01ec182cc29b"},
-        {type:"check",text:"Complete one Synthesis Tutor session."}
+  title: "Math • Week 1",
+  subtitle: "IXL + Abeka Math",
+
+  days: {
+
+    Monday: {
+      title: "IXL Diagnostic",
+      tasks: [
+        {
+          type: "link",
+          text: "Open IXL Diagnostic",
+          url: "https://www.ixl.com/diagnostic/arena"
+        },
+        {
+          type: "check",
+          text: "Work on the IXL Diagnostic for about 20–30 minutes."
+        },
+        {
+          type: "check",
+          text: "Take your time and do your best. This helps us find what you already know and what we need to work on."
+        },
+        {
+          type: "note",
+          text: "No Abeka lesson today."
+        }
+      ]
+    },
+
+    Tuesday: {
+      title: "Abeka Lesson 16",
+      tasks: [
+        {
+          type: "check",
+          text: "IXL Warm-Up — Work on a recommended skill for 5–10 minutes."
+        },
+        {
+          type: "check",
+          text: "Complete Abeka Math Lesson 16."
+        },
+        {
+          type: "check",
+          text: "Complete the assigned workbook problems."
+        },
+        {
+          type: "check",
+          text: "Check your work and correct missed problems."
+        }
+      ]
+    },
+
+    Wednesday: {
+      title: "IXL Skill Day",
+      tasks: [
+        {
+          type: "link",
+          text: "Open IXL",
+          url: "https://www.ixl.com/diagnostic/arena"
+        },
+        {
+          type: "check",
+          text: "Continue the IXL Diagnostic if it is not finished."
+        },
+        {
+          type: "check",
+          text: "Work on 1–2 recommended IXL skills."
+        },
+        {
+          type: "check",
+          text: "Focus on math facts or skills that need extra practice."
+        },
+        {
+          type: "note",
+          text: "No Abeka lesson today."
+        }
+      ]
+    },
+
+    Thursday: {
+      title: "Abeka Lesson 17",
+      tasks: [
+        {
+          type: "check",
+          text: "IXL Warm-Up — Work on a recommended skill for 5–10 minutes."
+        },
+        {
+          type: "check",
+          text: "Complete Abeka Math Lesson 17."
+        },
+        {
+          type: "check",
+          text: "Complete the assigned workbook problems."
+        },
+        {
+          type: "check",
+          text: "Check your work and correct missed problems."
+        }
+      ]
+    }
+
+  }
+},
       ]}
     }
   },
