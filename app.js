@@ -39,7 +39,7 @@ function subjectPage(subject){
       <div class="tabs week-tabs">
         <button class="${currentWeek===1?"active":""}" data-week="1">Week 1</button>
         <button class="${currentWeek===2?"active":""}" data-week="2">Week 2</button>
-        <button class="locked" disabled>Week 3 🔒</button>
+        <button class="${currentWeek===3?'active':''}" data-week="3">Week 3</button>
         <button class="locked" disabled>Week 4 🔒</button>
       </div>
       <div class="tabs day-tabs">
