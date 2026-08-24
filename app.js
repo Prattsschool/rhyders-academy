@@ -9,7 +9,7 @@ const labels={history:"History",math:"Math",science:"Science",reading:"Reading",
 const days=["Monday","Tuesday","Wednesday","Thursday"];
 let currentPage="home";
 let currentWeek=Number(localStorage.getItem("ra:current-week")||1);
-if(![1,2].includes(currentWeek)) currentWeek=1;
+if(![1,2,3].includes(currentWeek)) currentWeek=1;
 let parentUnlocked=false;
 
 const esc=(s="")=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
