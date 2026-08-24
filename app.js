@@ -100,7 +100,7 @@ function home(){
       <div class="card weather"><h3>🌤️ Weather</h3><p id="weatherText">Loading weather…</p><button class="btn blue" id="refreshWeather">Refresh</button></div>
     </div>
     <div class="card"><h3>Mom's Note</h3><p>${esc(localStorage.getItem("ra:mom-note")||"Have a great school day!")}</p></div>
-    <div class="card"><h3>Current Week</h3><div class="tabs"><button class="${currentWeek===1?"active":""}" data-home-week="1">Week 1</button><button class="${currentWeek===2?"active":""}" data-home-week="2">Week 2</button></div></div>
+    <div class="card"><h3>Current Week</h3><div class="tabs"><button class="${currentWeek===1?"active":""}" data-home-week="1">Week 1</button><button class="${currentWeek===2?"active":""}" data-home-week="2">Week 2</button><button class="${currentWeek===3?'active':''}" data-home-week="3">Week 3</button></div></div>
     <div class="grid">${subjects.map(s=>{const data=getSubject(s);return `<div class="tile" data-page="${s}"><h3>${icons[s]} ${labels[s]}</h3><p>${esc(data?.title||"Coming soon")}</p></div>`}).join("")}
       <div class="tile" data-page="coach"><h3>💬 Ask Coach</h3><p>Get a hint without being given the answer.</p></div>
       <div class="tile" data-page="print"><h3>🖨️ Print Center</h3><p>Print lesson pages and handwriting practice.</p></div>
